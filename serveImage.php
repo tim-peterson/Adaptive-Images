@@ -1,7 +1,7 @@
 <?
 
 $resolutions   = array(1382, 992, 768, 480);
-$filename=$_SERVER['DOCUMENT_ROOT']."/01.png";
+$filename=$_SERVER['DOCUMENT_ROOT']."/Adaptive-Images/01.png";
 $filename=$source_file;
 $browser_cache = 60*60*24*7; // How long the BROWSER cache should last (seconds, minutes, hours, days. 7days by default)
 $requested_uri  = parse_url(urldecode($_SERVER['REQUEST_URI']), PHP_URL_PATH);

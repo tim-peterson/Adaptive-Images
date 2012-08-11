@@ -110,8 +110,10 @@ function generateImage($source_file, $cache_file, $resolution) {
 
   return $cache_file;
 }
-$source_file=$_SERVER['DOCUMENT_ROOT']."/01.png";
-$cache_file=$_SERVER['DOCUMENT_ROOT']."/large_01.png"; $resolution=220; //cache_file==output file_path/file_name
 $resolutions   = array(1382, 992, 768, 480); // the resolution break-points to use (screen widths, in pixels)
+$source_file=$_SERVER['DOCUMENT_ROOT']."/Adaptive-Images/01.png";
+$cache_file=$_SERVER['DOCUMENT_ROOT']."/Adaptive-Images/small01.png"; 
+$resolution=480; //cache_file==output file_path/file_name
+
  generateImage($source_file, $cache_file, $resolution);
 ?>
