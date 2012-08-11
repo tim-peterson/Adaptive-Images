@@ -1,0 +1,35 @@
+Description of changes from Matt's original Adaptive-Images repo:
+
+1) split adaptive-images.php into 2 files: one for generating images, generateImage.php, and another for serving images, serveImage.php
+
+
+2) in .htaccess, change file to handle all images from adaptive-images.php -> serveImage.php
+i.e., change:
+
+    RewriteRule \.(?:jpe?g|gif|png)$ Adaptive-Images/adaptive-images.php
+to this:
+
+    RewriteRule \.(?:jpe?g|gif|png)$ Adaptive-Images/serveImage.php
+
+
+3) Goal of generateImage.php:
+
+The goal of generateImage.php is to take a file like this:
+
+    $_SERVER['DOCUMENT_ROOT'].'/Adaptive-images/01.png'
+
+ and largely using the ````generateImage()```` function and resizes it and renames it like this:
+
+    $_SERVER['DOCUMENT_ROOT'].'/Adaptive-images/small01.png'
+
+In my case, I will call ````generateImage()```` 4 times to generate 4 separate images one for each of the 4 major device screen widths: 1280, 992, 768, 480. 
+
+
+4) Goal of serveImage.php:
+
+If you go to http://localhost/Adaptive-images/demo.html, there is an <img> tag like this:
+
+    <img src="01.png">
+
+The point is for your server to recognize that the request is an image (based on ```RewriteRule \.(?:jpe?g|gif|png)$ Adaptive-Images/serveImage.php````) and to go to serveImage.php to figure out what to do with the image. ````serveImage.php```` creates/uses the ````$_COOKIE['resolution']```` and then ````sendImage()```` is called to serve the file with the path modified or not based on the value of the screen ````resolution````.
+
